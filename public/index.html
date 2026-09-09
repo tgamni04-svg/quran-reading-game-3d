@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permainan Membaca Quran 3D</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Student Name Input Screen -->
+        <div id="nameInputScreen" class="screen">
+            <div class="container">
+                <h1>🕌 Permainan Membaca Quran</h1>
+                <p>Selamat datang! Masukkan nama anda untuk memulai.</p>
+                <input type="text" id="studentName" placeholder="Nama Anda" maxlength="50">
+                <button onclick="startGame()">Mula Permainan</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen hidden">
+            <div class="game-container">
+                <!-- 3D Canvas -->
+                <div id="canvas3d"></div>
+
+                <!-- Quran Lesson Panel -->
+                <div class="lesson-panel">
+                    <div class="lesson-header">
+                        <h2 id="surahName">Surah Al-Fatihah</h2>
+                        <span id="verseNumber">Ayat 1</span>
+                    </div>
+
+                    <!-- Quranic Text with Waqaf Marks -->
+                    <div class="quran-text" id="quranText" dir="rtl">
+                        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                    </div>
+
+                    <!-- Audio Playback Button -->
+                    <div class="audio-controls">
+                        <button id="playAudioBtn" class="btn-primary">
+                            🔊 Dengar Bacaan Referensi
+                        </button>
+                        <span id="audioStatus"></span>
+                    </div>
+
+                    <!-- Recording Controls -->
+                    <div class="recording-controls">
+                        <button id="recordBtn" class="btn-record" onmousedown="startRecording()" onmouseup="stopRecording()" ontouchstart="startRecording()" ontouchend="stopRecording()">
+                            🎤 Tekan & Tahan untuk Rekod
+                        </button>
+                        <span id="recordingStatus"></span>
+                        <span id="recordingTime">00:00</span>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="navigation">
+                        <button onclick="previousLesson()" class="btn-secondary">← Sebelumnya</button>
+                        <span id="lessonCounter">1 / 6</span>
+                        <button onclick="nextLesson()" class="btn-secondary">Seterusnya →</button>
+                    </div>
+
+                    <!-- Student Info -->
+                    <div class="student-info">
+                        <p>👤 Pelajar: <strong id="displayName"></strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Screen -->
+        <div id="adminScreen" class="screen hidden">
+            <div class="admin-container">
+                <h1>🔐 Panel Admin</h1>
+                <div id="adminLogin" class="admin-login">
+                    <input type="password" id="adminPassword" placeholder="Kata Laluan Admin">
+                    <button onclick="loginAdmin()">Log Masuk Admin</button>
+                </div>
+                <div id="adminPanel" class="admin-panel hidden">
+                    <button onclick="logoutAdmin()" class="btn-logout">Log Keluar</button>
+                    <h2>Rakaman Pelajar</h2>
+                    <div id="recordingsList" class="recordings-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
